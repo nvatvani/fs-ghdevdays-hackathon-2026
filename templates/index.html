@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Get brutally honest feedback on your hackathon idea from a local language model.">
+    <title>Roast My Pitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Roast My Pitch home">
+          <span class="brand-mark" aria-hidden="true">!</span>
+          <span>ROAST MY PITCH</span>
+        </a>
+        <span class="status"><span class="status-dot"></span> LOCAL MODEL / ONLINE</span>
+      </header>
+
+      <section class="hero">
+        <p class="kicker">HACKATHON IDEA STRESS TEST</p>
+        <h1>Is your idea<br><em>actually good?</em></h1>
+        <p class="intro">Paste the pitch you are about to spend 48 hours on. A local Gemma model will tell you what is wrong with it — with feeling.</p>
+      </section>
+
+      <section class="workspace" aria-label="Pitch roaster">
+        <form id="roast-form" class="pitch-form">
+          <div class="field-header">
+            <label for="idea">Your brilliant idea</label>
+            <span id="char-count">0 / 8,000</span>
+          </div>
+          <textarea id="idea" name="idea" maxlength="8000" placeholder="We are building an app that uses AI to..." required></textarea>
+          <div class="form-footer">
+            <p class="helper">Be specific. The vaguer the pitch, the hotter the roast.</p>
+            <button id="submit-button" type="submit">
+              <span class="button-label">Roast it <span aria-hidden="true">↗</span></span>
+              <span class="button-loading" aria-hidden="true">Thinking...</span>
+            </button>
+          </div>
+        </form>
+
+        <section id="result" class="result-panel" aria-live="polite" hidden>
+          <div class="result-heading">
+            <span class="result-label">THE VERDICT IS IN</span>
+            <button id="copy-button" class="copy-button" type="button">Copy roast</button>
+          </div>
+          <div id="roast-content" class="roast-content"></div>
+        </section>
+        <p id="error-message" class="error-message" role="alert" hidden></p>
+      </section>
+
+      <footer class="footer">
+        <span>PRIVATE BY DEFAULT · NOTHING LEAVES YOUR MACHINE</span>
+        <span>POWERED BY <strong>GEMMA-4-E4B-IT</strong></span>
+      </footer>
+    </main>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
