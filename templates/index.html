@@ -17,8 +17,44 @@
           <span class="brand-mark" aria-hidden="true">!</span>
           <span>ROAST MY PITCH</span>
         </a>
-        <span class="status"><span class="status-dot"></span> LOCAL MODEL / ONLINE</span>
+        <span id="model-status" class="status" role="status" aria-live="polite">
+          <span class="status-dot"></span><span id="model-status-label">CHECKING MODEL...</span>
+        </span>
       </header>
+
+      <aside id="settings-drawer" class="settings-drawer" aria-labelledby="settings-title">
+        <button id="settings-tab" class="settings-tab" type="button" aria-controls="settings-drawer" aria-expanded="false">
+          <span aria-hidden="true">SETTINGS</span>
+        </button>
+        <div class="settings-content">
+          <div class="settings-heading">
+            <div>
+              <p class="settings-kicker">LOCAL OVERRIDES</p>
+              <h2 id="settings-title">Model settings</h2>
+            </div>
+            <button id="settings-close" class="settings-close" type="button" aria-label="Close settings">×</button>
+          </div>
+          <p class="settings-copy">These values are saved in this browser and override the environment defaults for your requests.</p>
+          <form id="settings-form">
+            <label for="model-url">Model URL</label>
+            <input id="model-url" name="model_url" type="url" required>
+            <label for="model-name">Model name</label>
+            <input id="model-name" name="model_name" type="text" list="model-options" required>
+            <datalist id="model-options"></datalist>
+            <label for="model-timeout">Request timeout (seconds)</label>
+            <input id="model-timeout" name="model_timeout" type="number" min="1" max="300" step="1" required>
+            <label for="api-key">API key</label>
+            <input id="api-key" name="api_key" type="password" autocomplete="off" placeholder="Optional">
+            <p class="port-note">Leave blank if your local model server does not require authentication.</p>
+            <div id="available-models" class="available-models" aria-live="polite"></div>
+            <div class="settings-actions">
+              <button id="reset-settings" class="reset-button" type="button">Reset defaults</button>
+              <button class="save-button" type="submit">Save settings</button>
+            </div>
+            <p id="settings-status" class="settings-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </aside>
 
       <section class="hero">
         <p class="kicker">HACKATHON IDEA STRESS TEST</p>
@@ -54,7 +90,7 @@
 
       <footer class="footer">
         <span>PRIVATE BY DEFAULT · NOTHING LEAVES YOUR MACHINE</span>
-        <span>POWERED BY <strong>GEMMA-4-E4B-IT</strong></span>
+        <span>POWERED BY <strong id="footer-model-name">GEMMA-4-E4B-IT</strong></span>
       </footer>
     </main>
     <script src="{{ url_for('static', filename='app.js') }}"></script>

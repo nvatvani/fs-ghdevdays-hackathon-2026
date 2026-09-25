@@ -19,5 +19,10 @@ A small Flask webapp that sends hackathon ideas to a locally running
    uv run python app.py
    ```
 
-Open `http://127.0.0.1:5000`. Set `MODEL_URL`, `MODEL_NAME`, `MODEL_TIMEOUT`, or
-`PORT` as environment variables to override the defaults.
+Open `http://127.0.0.1:5000`. The header checks the model endpoint every three
+seconds and shows whether it is reachable. Open the vertical **SETTINGS** tab on
+the right to override the model URL, model name, request timeout, and API key
+for this browser. Settings are stored locally in the browser, and the API key
+defaults to an empty string for unauthenticated local servers. Environment
+variables remain available for server-wide defaults: `MODEL_URL`, `MODEL_NAME`,
+`MODEL_TIMEOUT`, `MODEL_HEALTH_TIMEOUT`, `API_KEY`, and `PORT`.
